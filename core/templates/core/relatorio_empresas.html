@@ -1,16 +1,21 @@
+
+ <meta charset="utf-8">
 <style>
     .test {
-        color: red;
+        color: black;
     }
 </style>
 
-<h1 class="test">Relatorio de empresas</h1>
+
+<h1 class="test">Relatorio de Empresas</h1>
+
 <table>
   <tr>
     <td>Id</td>
     <td>Nome</td>
     <td>Endereço</td>
     <td>Telefone</td>
+    <td>CNPJ</td>
   </tr>
 
   {% for empresa in empresas %}
@@ -19,6 +24,7 @@
         <td>{{ empresa.nome }}</td>
         <td>{{ empresa.endereco}}</td>
         <td>{{ empresa.telefone }}</td>
+        <td>{{ empresa.cnpj }}</td>
       </tr>
   {% endfor %}
 </table> 
