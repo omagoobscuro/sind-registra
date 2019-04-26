@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block conteudo %}
+<div class="row">
+        <div class="col">
+<html lang="pt-br">
+<head>
+        <h2>Tem certeza que deseja deletar: {{ associado }}</h2>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Deletar<</title>
+</head>
+<body>
+        <form method="POST" action="{% url 'core_associado_delete' associado.id %}">
+        {% csrf_token %}               
+        <button type="submit" class="btn btn-danger">Deletar</button>
+
+        </form>
+</body>
+        </div>
+</div>
+</html>
+{% endblock conteudo %}

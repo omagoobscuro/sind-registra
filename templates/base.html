@@ -1,0 +1,57 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Sind-Registra</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+    <link rel="stylesheet" href="{% static 'css/Navigation-with-Button.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sticky-dark-top-nav-with-dropdown.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+   
+</head>
+  
+<body>
+      
+    <div></div>
+   
+    <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button">
+        <div class="container"><a class="navbar-brand" href=""><span class="text-info"><img class="img-fluid" src="{% static 'img/profile.png' %}" width="100" height="100" style="width: 100;height: 100;">SIND-REGISTRA</span> </a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav nav-right">
+                    <li class="nav-item" role="presentation"><a class="nav-link text-capitalize text-light" href="/">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-capitalize text-light" href="{% url 'core_lista_associados' %}">Associados</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-capitalize text-light" href="{% url 'core_lista_empresas' %}">Empresas</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-capitalize text-light" href="{% url 'core_lista_pagamentos' %}">Pagamentos</a></li>
+                </ul>
+                {% if user.is_authenticated %}
+                <p class="ml-auto navbar-text actions"> 
+                    <a class="btn btn-primary action-button" role="button" href="{% url 'logout'%}">Deslogar, {{ user }}</a></p>
+                {% endif %}
+        </div>
+      
+        </div>
+       
+    </nav>  
+    <div class="container-fluid">
+     {% block conteudo %}
+    <p class="text-center text-info" style="font-size: 60px;">SIND-REGISTRA&nbsp;</p>
+    <p class="text-center" style="font-size: 29px;">SISTEMA PARA REGISTROS EM SINDICATOS</p>
+    
+    <div></div>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+     {% endblock conteudo %}
+     <div class="footer-copyright text-center py-3">© 2019 Copyright:
+            <a href="http://127.0.0.1:8000"> SIND-REGISTRA- Sistema para registro em sindicatos</a>
+          </div>
+    </div> 
+</body>
+  
+</html>

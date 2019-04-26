@@ -1,0 +1,24 @@
+<style>
+    .test {
+        color: red;
+    }
+</style>
+
+<h1 class="test">Relatorio de empresas</h1>
+<table>
+  <tr>
+    <td>Id</td>
+    <td>Nome</td>
+    <td>Endereço</td>
+    <td>Telefone</td>
+  </tr>
+
+  {% for empresa in empresas %}
+      <tr>
+        <td>{{ empresa.id }}</td>
+        <td>{{ empresa.nome }}</td>
+        <td>{{ empresa.endereco}}</td>
+        <td>{{ empresa.telefone }}</td>
+      </tr>
+  {% endfor %}
+</table> 

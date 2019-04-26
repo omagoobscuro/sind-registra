@@ -1,0 +1,26 @@
+<style>
+    .test {
+        color: red;
+    }
+</style>
+
+<h1 class="test">Relatorio de Associados</h1>
+<table>
+  <tr>
+    <td>Id</td>
+    <td>Nome</td>
+    <td>Telefone</td>
+    <td>CPF</td>
+    <td>Empresa</td>
+  </tr>
+
+  {% for associado in associados %}
+      <tr>
+        <td>{{ associado.id }}</td>
+        <td>{{ associado.nome }}</td>
+        <td>{{ associado.telefone}}</td>
+        <td>{{ associado.cpf}}</td>
+        <td>{{ associado.empresa}}</td>
+      </tr>
+  {% endfor %}
+</table>

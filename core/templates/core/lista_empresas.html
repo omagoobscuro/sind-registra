@@ -1,0 +1,59 @@
+
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block conteudo %}
+<div class="row">
+                <div class="col-12">
+                        <h2>Cadastrar Empresas</h2>
+                </div>
+</div>
+<div class="row">
+                <div class="col-sm-6">
+                        <form action="{% url 'core_empresa_novo' %}" method="POST">
+          
+                         {% csrf_token %}       
+                                                         
+                          {{form|bootstrap }}
+                                        
+                           <button type="submit" class="btn btn-success">Cadastrar</button>
+                                 <a class="btn btn-info" href="{% url 'relatorio_pdf' %}">Relatorio PDF</a>
+                         </form>
+        </div>
+                <div class="col-sm-6">
+                                <h2>Lista das Empresas</h2>
+                         <table class="table">
+                            <thead class="thead-dark">
+                               <tr>
+                             <th scope="col">ID</th>
+                           <th scope="col">Nome</th>
+                            <th scope="col">Endereço</th>
+                            <th scope="col">Telefone</th>
+                           <th scope="col">CNPJ</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                                 {% for empresa in empresas %}
+                                 <tr>
+                         <th scope="row">{{empresa.id}}</th>
+                         <td>{{empresa.nome}}</td>
+                           <td>{{empresa.endereco}}</td>
+                            <td>{{empresa.telefone}}</td>
+                          <td>{{empresa.cnpj}}</td>
+                          </tr>       
+                            {% endfor %}                
+                      </tbody>
+                         </table>
+         </div>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+       
+</head>
+<body>
+                    
+                </div>
+</body>
+{% endblock conteudo %}
+
+</html>

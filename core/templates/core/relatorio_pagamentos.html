@@ -1,0 +1,24 @@
+<style>
+    .test {
+        color: red;
+    }
+</style>
+
+<h1 class="test">Relatorio de Pagamentos</h1>
+<table>
+  <tr>
+    <td>Id</td>
+    <td>Empresa</td>
+    <td>Valor Pago</td>
+    <td>Data Pagamento</td>
+  </tr>
+
+  {% for pagamento in pagamentos %}
+      <tr>
+        <td>{{ pagamento.id }}</td>
+        <td>{{ pagamento.empresa }}</td>
+        <td>{{ pagamento.valor_pago}}</td>
+        <td>{{ pagamento.data_pagamento}}</td>
+      </tr>
+  {% endfor %}
+</table>
