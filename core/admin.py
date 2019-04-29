@@ -17,4 +17,4 @@ admin.site.register(Empresa , EmpresaAdmin)
 admin.site.register(Associado , AssociadoAdmin)
 admin.site.register(Pagamento , PagamentoAdmin)
 
-admin.site.site_header = 'SIND-REGISTRA'
+admin.site.site_header = 'Administração'
