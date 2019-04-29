@@ -1,32 +1,17 @@
 {% extends 'base.html' %}
 {% load bootstrap %}
 {% block conteudo %}
-<div class="row">
-                <div class="col-12">
-                        <h2>Cadastrar Pagamentos</h2>
-                </div>
-</div>
-<div class="row">
-                <div class="col-sm-6">
-                <form action="{% url 'core_pagamento_novo' %}" method="POST">
-          
-                                {% csrf_token %}       
-                                         
-                                {{form|bootstrap  }}
-                        
-                                <button type="submit" class="btn btn-success">Cadastrar</button>
-                                <a class="btn btn-info" href="{% url 'relatorio_pagamentos' %}">Relatorio PDF</a>
-                </form>
-                        </div>
-                <div class="col-sm-6">
-                                <table class="table">
-                                                <h2>Lista dos Pagamentos</h2>
-                                                <thead class="thead-dark">
-                                                   <tr>
+
+                <div class="col-md-auto">
+                  <div class="table-responsive">
+                        <table class="table">
+                                        <h2 class="text-center">Lista dos Pagamentos</h2>
+                                 <thead class="thead-dark">
                                                  <th scope="col">ID</th>
                                                <th scope="col">Empresa</th>
                                                 <th scope="col">Valor Pago</th>
                                                 <th scope="col">Data Pagamento</th>
+                                                <th colspan = '2' style="text-align:center" scope="col">Ações</th>
                                                  </tr>
                                              </thead>
                                              <tbody>
@@ -36,10 +21,29 @@
                                              <td>{{pagamento.empresa}}</td>
                                                <td>{{pagamento.valor_pago}}</td>
                                                 <td>{{pagamento.data_pagamento}}</td>
+                                                <td><a href="{% url 'core_pagamento_update' pagamento.id %}" class="btn btn-primary">Editar</td>
+                                                  <td><a href="{% url 'core_pagamento_delete' pagamento.id %}" class="btn btn-danger">Excluir</td>
                                               </tr>       
                                                 {% endfor %}                
                                           </tbody>
                                              </table>
+                                  <div class="container">
+                          <div class="row justify-content-md-center">
+                        <div class="col-md-auto">
+                        <h2 class="text-center">Adicionar Pagamento</h2>
+                </div>
+                </div>
+                                <form action="{% url 'core_pagamento_novo' %}" method="POST">
+          
+                                {% csrf_token %}       
+                                         
+                                {{form|bootstrap  }}
+                        
+                                <button type="submit" class="btn btn-success">Cadastrar</button>
+                                <a class="btn btn-info" href="{% url 'relatorio_pagamentos' %}">Relatorio PDF</a>
+                                  </form>
+
+                             </div>
                              </div>
 
 <html lang="pt-br">
