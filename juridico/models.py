@@ -19,12 +19,13 @@ class Juridico(models.Model):
     )
 
     processo = models.CharField(max_length=50)
+    motivo = models.CharField(max_length=100)
     reclamante = models.ForeignKey(Associado, on_delete=models.CASCADE)
-    cpf_reclamante = models.CharField(max_length=100)
+    cpf_reclamante = models.CharField(max_length=100, null=True, blank=True)
     reclamado = models.ForeignKey(Empresa, on_delete=models.CASCADE)
-    cnpj_reclamado = models.CharField(max_length=100)
+    cnpj_reclamado = models.CharField(max_length=100, null=True, blank=True)
     nome_advogado = models.CharField(max_length=100)
-    forum = models.CharField(max_length=100)
+    forum = models.CharField(max_length=100, null=True, blank=True)
     data_entrada = models.DateField()
     local_audiencia = models.CharField(max_length=100, null=True, blank=True)
     data_audiencia = models.DateField(null=True, blank=True)
@@ -32,6 +33,9 @@ class Juridico(models.Model):
     data_sentenca = models.DateField(null=True, blank=True)
     recurso = models.CharField(max_length=100, null=True, blank=True)
     status = models.CharField(choices=STATUS, default=ENTRADA, max_length=2)
+    enviar_arquivo = models.FileField(upload_to='media/', null=True, blank=True)
+    enviar_arquivo = models.FileField(upload_to='media/', null=True, blank=True)
+    enviar_arquivo = models.FileField(upload_to='media/', null=True, blank=True)
 
     class Meta:
       verbose_name_plural = "Juridico"

@@ -4,7 +4,7 @@ from .models import Juridico
 
 # Register your models here.
 class JuridicoAdmin(admin.ModelAdmin):
-    list_display = ('processo', 'reclamante', 'reclamado', 'data_entrada', 'status',)   
+    list_display = ('processo','motivo', 'reclamante', 'reclamado', 'data_entrada', 'status',)   
     search_fields = ('processo', 'reclamante', 'reclamado',)
     list_filter = ( 'processo', 'reclamante',  'reclamado', 'status', )
 

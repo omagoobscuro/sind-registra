@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     'import_export',
     'tempus_dominus',
     'core',
-    'estoque',
     'juridico',
     'bootstrapform',
     'bootstrap_admin',

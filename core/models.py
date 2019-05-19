@@ -40,6 +40,9 @@ class Lancamento(models.Model):
     vencimento = models.DateField()
     data_envio = models.DateField(null=True, blank=True) 
     status = models.CharField('Pago',max_length=1,choices=STATUS_PAGAMENTO)
+
+    class Meta:
+      verbose_name_plural = "lançamentos"
      
     def __str__(self):
         return str(self.empresa) if self.empresa else ''
