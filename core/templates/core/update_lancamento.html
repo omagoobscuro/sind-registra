@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block conteudo %}
+<div class="row">
+                <div class="col">
+<html lang="pt-br">
+<head>
+        <h2>Atualizar Lançamentos: {{ empresa }}</h2>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>ATUALIZAR LANÇAMENTOS<</title>
+</head>
+<body>
+        <form action="{% url 'core_lancamento_update' lancamento.id %}" method="POST">
+
+        {% csrf_token %}       
+                 
+        {{ form|bootstrap }}
+
+        <button type="submit" class="btn btn-success">Atualizar</button>
+        <a href="{% url 'core_lancamento_delete' lancamento.id %}" class="btn btn-danger">Deletar</a>
+        </form>
+        
+</body>
+        </div>
+</div>
+</html>
+{% endblock conteudo %}

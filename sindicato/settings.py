@@ -20,7 +20,14 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [   
+    'django_object_actions',
+    'import_export',
+    'tempus_dominus',
+    'core',
+    'estoque',
+    'juridico',
+    'bootstrapform',
     'bootstrap_admin',
     'django_extensions',
     'django.contrib.admin',
@@ -29,8 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
-    'bootstrapform',
+    
 ]
 
 MIDDLEWARE = [
@@ -68,12 +74,17 @@ WSGI_APPLICATION = 'sindicato.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
+  
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'sindicato',
+        'USER': 'root',
+        'PASSWORD': '123456',
+        'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     },
-
 }
+    
 
 
 # Password validation
@@ -108,6 +119,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+TEMPUS_DOMINUS_LOCALIZE = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -122,3 +134,10 @@ STATICFILES_DIRS = [
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_HOST_USER = 'acelinofernandessilva@hotmail.com'
+EMAIL_HOST_PASSWORD = 'metal666'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = True

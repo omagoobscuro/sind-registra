@@ -5,8 +5,9 @@ import xhtml2pdf.pisa as pisa
 import io
 from django.views.generic.base import View
 from django.http import HttpResponse
-from .models import Empresa, Associado, Pagamento
-from .forms import EmpresaForm, AssociadoForm, PagamentoForm
+from .models import Empresa, Associado, Agendamento, Lancamento, Debito
+from .forms import EmpresaForm, AssociadoForm, AgendamentoForm, LancamentoForm, DebitoForm
+
 
 
 # Create your views here.
@@ -88,38 +89,109 @@ def associado_delete(request, id):
              return render(request, 'core/delete_associado.html', {'associado': associado}) 
 
 @login_required
-def lista_pagamentos(request):
-    pagamentos = Pagamento.objects.all()
-    form = PagamentoForm(request.POST)
-    return render(request, 'core/lista_pagamentos.html', {'pagamentos': pagamentos, 'form': form})    
+def lista_lancamentos(request):
+    lancamentos = Lancamento.objects.all()
+    form = LancamentoForm(request.POST)
+    return render(request, 'core/lista_lancamentos.html', {'lancamentos': lancamentos, 'form': form})    
 
-def pagamento_novo(request):
-    form = PagamentoForm(request.POST or None)
+def lancamento_novo(request):
+    form = LancamentoForm(request.POST or None)
     if form.is_valid():
         form.save()
-    return redirect('core_lista_pagamentos')
-   
-def pagamento_update(request, id):
+    return redirect('core_lista_lancamentos')   
+    
+
+def lancamento_update(request, id):
     data = {}
-    pagamento = Pagamento.objects.get(id=id)
-    form = PagamentoForm(request.POST or None, instance=pagamento)
-    data['pagamento'] = pagamento
+    lancamento = Lancamento.objects.get(id=id)
+    form = LancamentoForm(request.POST or None, instance=lancamento)
+    data['lancamento'] = lancamento
     data['form'] = form
 
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect('core_lista_pagamentos')    
+            return redirect('core_lista_lancamentos')    
     else:
-        return render(request, 'core/update_pagamento.html', data)   
+        return render(request, 'core/update_lancamento.html', data)
 
-def pagamento_delete(request, id):
-     pagamento = Pagamento.objects.get(id=id)   
+def lancamento_delete(request, id):
+     lancamento = Lancamento.objects.get(id=id)   
      if request.method == 'POST':
-             pagamento.delete()
-             return redirect('core_lista_pagamentos')
+             associado.delete()
+             return redirect('core_lista_lancamentos')
      else:
-             return render(request, 'core/delete_pagamento.html', {'pagamento': pagamento})           
+             return render(request, 'core/delete_lancamento.html', {'lancamento': lancamento}) 
+ 
+
+@login_required
+def lista_debitos(request):
+    debitos = Debito.objects.all()
+    form = DebitoForm(request.POST)
+    return render(request, 'core/lista_debitos.html', {'debitos': debitos, 'form': form})    
+
+def debito_novo(request):
+    form = DebitoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+    return redirect('core_lista_debitos')   
+    
+
+def debito_update(request, id):
+    data = {}
+    debito = Debito.objects.get(id=id)
+    form = DebitoForm(request.POST or None, instance=debito)
+    data['debito'] = debito
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_debitos')    
+    else:
+        return render(request, 'core/update_debito.html', data)
+
+def debito_delete(request, id):
+     debito = Debito.objects.get(id=id)   
+     if request.method == 'POST':
+             debito.delete()
+             return redirect('core_lista_debitos')
+     else:
+             return render(request, 'core/delete_debito.html', {'debito': debito})  
+
+@login_required
+def lista_agendamento(request):
+    agendamentos = Agendamento.objects.all()
+    form = AgendamentoForm(request.POST)
+    return render(request, 'core/lista_agendamento.html', {'agendamentos': agendamentos, 'form': form})    
+
+def agendamento_novo(request):
+    form = AgendamentoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+    return redirect('core_lista_agendamento')
+   
+def agendamento_update(request, id):
+    data = {}
+    agendamento = Agendamento.objects.get(id=id)
+    form = AgendamentoForm(request.POST or None, instance=agendamento)
+    data['agendamento'] = agendamento
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_agendamento')    
+    else:
+        return render(request, 'core/update_agendamento.html', data)   
+
+def agendamento_delete(request, id):
+     agendamento = Agendamento.objects.get(id=id)   
+     if request.method == 'POST':
+             agendamento.delete()
+             return redirect('core_lista_agendamento')
+     else:
+             return render(request, 'core/delete_agendamento.html', {'agendamento': agendamento})            
 
 class Render:
     @staticmethod
@@ -156,11 +228,21 @@ class PdfAssociado(View):
         }
         return Render.render('core/relatorio_associados.html', params, 'relatorio_associados') 
 
-class PdfPagamento(View):
+class PdfLancamento(View):
     def get(self, request):
-        pagamentos = Pagamento.objects.all()
+        lancamentos = Lancamento.objects.all()
         params = {
-            'pagamentos': pagamentos,
+            'lancamentos': lancamentos,
             'request': request,
         }
-        return Render.render('core/relatorio_pagamentos.html', params, 'relatorio_pagamentos') 
+        return Render.render('core/relatorio_lancamentos.html', params, 'relatorio_lancamentos')
+
+
+class PdfDebitos(View):
+    def get(self, request):
+        debitos = Debito.objects.all()
+        params = {
+            'debitos': debitos,
+            'request': request,
+        }
+        return Render.render('core/relatorio_debitos.html', params, 'relatorio_debitos')
