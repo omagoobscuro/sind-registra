@@ -7,6 +7,7 @@ from django.views.generic.base import View
 from django.http import HttpResponse
 from .models import Empresa, Associado, Agendamento, Lancamento, Debito
 from .forms import EmpresaForm, AssociadoForm, AgendamentoForm, LancamentoForm, DebitoForm
+from django.contrib import messages
 
 
 
@@ -26,6 +27,7 @@ def empresa_novo(request):
     form = EmpresaForm(request.POST or None)
     if form.is_valid():
         form.save()
+        messages.success(request,"Empresa adicionada com sucesso")
         return redirect('core_lista_empresas')
     else:
             form = EmpresaForm()
@@ -41,6 +43,7 @@ def empresa_update(request, id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            messages.info(request,"Empresa editada com sucesso")
             return redirect('core_lista_empresas')    
     else:
         return render(request, 'core/update_empresa.html', data)  
@@ -49,6 +52,7 @@ def empresa_delete(request, id):
      empresa = Empresa.objects.get(id=id)   
      if request.method == 'POST':
              empresa.delete()
+             messages.warning(request,"Empresa deletada com sucesso")
              return redirect('core_lista_empresas')
      else:
              return render(request, 'core/delete_empresa.html', {'empresa': empresa})    
@@ -63,6 +67,7 @@ def associado_novo(request):
     form = AssociadoForm(request.POST or None)
     if form.is_valid():
         form.save()
+        messages.warning(request,"Associado adicionado com sucesso")
     return redirect('core_lista_associados')   
     
 
@@ -76,6 +81,7 @@ def associado_update(request, id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            messages.warning(request,"Associado Editado com sucesso")
             return redirect('core_lista_associados')    
     else:
         return render(request, 'core/update_associado.html', data)
@@ -84,6 +90,7 @@ def associado_delete(request, id):
      associado = Associado.objects.get(id=id)   
      if request.method == 'POST':
              associado.delete()
+             messages.warning(request,"Associado deletado com sucesso")
              return redirect('core_lista_associados')
      else:
              return render(request, 'core/delete_associado.html', {'associado': associado}) 
@@ -98,6 +105,7 @@ def lancamento_novo(request):
     form = LancamentoForm(request.POST or None)
     if form.is_valid():
         form.save()
+        messages.warning(request,"Lançamento adicionado com sucesso")
     return redirect('core_lista_lancamentos')   
     
 
@@ -111,6 +119,7 @@ def lancamento_update(request, id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            messages.warning(request,"Lançamento editado com sucesso")
             return redirect('core_lista_lancamentos')    
     else:
         return render(request, 'core/update_lancamento.html', data)
@@ -119,6 +128,7 @@ def lancamento_delete(request, id):
      lancamento = Lancamento.objects.get(id=id)   
      if request.method == 'POST':
              associado.delete()
+             messages.warning(request,"Lançamento deletado com sucesso")
              return redirect('core_lista_lancamentos')
      else:
              return render(request, 'core/delete_lancamento.html', {'lancamento': lancamento}) 
@@ -134,6 +144,7 @@ def debito_novo(request):
     form = DebitoForm(request.POST or None)
     if form.is_valid():
         form.save()
+        messages.warning(request,"Debito adicionado com sucesso")
     return redirect('core_lista_debitos')   
     
 
@@ -147,6 +158,7 @@ def debito_update(request, id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            messages.warning(request,"Debito atualizado com sucesso")
             return redirect('core_lista_debitos')    
     else:
         return render(request, 'core/update_debito.html', data)
@@ -155,6 +167,7 @@ def debito_delete(request, id):
      debito = Debito.objects.get(id=id)   
      if request.method == 'POST':
              debito.delete()
+             messages.warning(request,"Debito deletado com sucesso")
              return redirect('core_lista_debitos')
      else:
              return render(request, 'core/delete_debito.html', {'debito': debito})  
@@ -169,6 +182,7 @@ def agendamento_novo(request):
     form = AgendamentoForm(request.POST or None)
     if form.is_valid():
         form.save()
+        messages.warning(request,"Agendamento adicionado com sucesso")
     return redirect('core_lista_agendamento')
    
 def agendamento_update(request, id):
@@ -181,6 +195,7 @@ def agendamento_update(request, id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            messages.warning(request,"Agendamento atualizado com sucesso")
             return redirect('core_lista_agendamento')    
     else:
         return render(request, 'core/update_agendamento.html', data)   
@@ -189,6 +204,7 @@ def agendamento_delete(request, id):
      agendamento = Agendamento.objects.get(id=id)   
      if request.method == 'POST':
              agendamento.delete()
+             messages.warning(request,"Agendamento deletado com sucesso")
              return redirect('core_lista_agendamento')
      else:
              return render(request, 'core/delete_agendamento.html', {'agendamento': agendamento})            

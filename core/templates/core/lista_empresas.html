@@ -14,6 +14,7 @@
                             <th scope="col">Endereço</th>
                             <th scope="col">Telefone</th>
                            <th scope="col">CNPJ</th>
+                           <th scope="col">Email</th>
                            <th colspan = '2' style="text-align:center" scope="col">Ações</th>
                              </tr>
                          </thead>
@@ -25,6 +26,7 @@
                            <td>{{empresa.endereco}}</td>
                             <td>{{empresa.telefone}}</td>
                           <td>{{empresa.cnpj}}</td>
+                          <td>{{empresa.email}}</td>
                            <td><a href="{% url 'core_empresa_update' empresa.id %}" class="btn btn-primary">Editar</td>
                       <td><a href="{% url 'core_empresa_delete' empresa.id %}" class="btn btn-danger">Excluir</td>
                           </tr>       
