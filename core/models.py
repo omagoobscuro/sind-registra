@@ -65,10 +65,13 @@ class Financeiro(models.Model):
     empresa_debito = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='+',)
     debito = models.ForeignKey(DebitoTotal, on_delete=models.CASCADE)
     consulta = models.DateTimeField(auto_now=False, auto_now_add=False,)
-
+    
     @property
     def total(self):
         return (self.lancamento.valor - self.debito.valor)
+
+    def __str__(self):
+        return str(self.empresa_lancamento) if self.empresa_debito else ''
 
 class Agendamento(models.Model):
     ATENDIDO = 'A'
