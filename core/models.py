@@ -11,7 +11,7 @@ class Empresa(models.Model):
     nome = models.CharField(max_length=100)
     endereco= models.CharField(max_length=100)
     telefone = models.CharField(max_length=12)
-    cnpj = models.CharField(max_length=15)
+    cnpj = models.CharField(max_length=15, unique=True)
     email = models.CharField(max_length=30)
     
 
@@ -25,7 +25,7 @@ class Associado(models.Model):
     telefone = models.CharField(max_length=12)
     data_nascimento = models.DateField()
     data_filiacao = models.DateField()
-    cpf = models.CharField(max_length=15)
+    cpf = models.CharField(max_length=15, unique=True)
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -28,7 +28,8 @@
                         <li class="dropdown nav-item"><a class="dropdown-toggle nav-link text-light" data-toggle="dropdown" aria-expanded="false" href="#">Contas </a>
                             <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="{% url 'core_lista_lancamentostotal' %}">LançamentosTotal</a><a class="dropdown-item" role="presentation" href="{% url 'core_lista_debitostotal' %}">DebitosTotal</a><a class="dropdown-item" role="presentation" href="{% url 'core_lista_financeiros' %}">Financeiro</a></div>
                         </li>
-                    </ul>{% if user.is_authenticated %}<span class="navbar-text actions"> <a class="btn btn-light action-button" role="button" href="{% url 'logout'%}">{{ user }}, Deslogar </a></span>{% endif %}</div>
+                    </ul>{% if user.is_authenticated %}<span class="navbar-text actions"> <a class="btn btn-dark" role="button" href="{% url 'logout'%}">{{ user }}, Deslogar </a></span>{% endif %}
+                    <button type="button" class="btn btn-primary">Primary</button></div>
     </div>
     </nav>
         {% if messages %}
