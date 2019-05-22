@@ -1,1 +1,1 @@
-web: gunicorn sindicato.wsgi
+web: gunicorn sindicato.wsgi --log-file -
