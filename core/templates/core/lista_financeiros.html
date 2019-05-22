@@ -15,6 +15,8 @@
                                             <th scope="col">Empresa_debito</th>
                                           <th scope="col">Debito</th>
                                             <th scope="col">Consulta</th>
+                                            <th scope="col">Total</th>
+
 
                                             <th colspan = '2' style="text-align:center" scope="col">Ações</th>
                                           </tr>
@@ -28,6 +30,7 @@
                                             <td>{{financeiro.empresa_debito}}</td>
                                             <td>{{financeiro.debito}}</td>
                                             <td>{{financeiro.consulta}}</td>
+                                            <td>{{financeiro.total}}</td>
                                             <td><a href="{% url 'core_financeiro_update' financeiro.id %}" class="btn btn-primary">Editar</td>
                                             <td><a href="{% url 'core_financeiro_delete' financeiro.id %}" class="btn btn-danger">Excluir</td>
                                           </tr>       
