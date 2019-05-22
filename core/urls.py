@@ -68,7 +68,7 @@ urlpatterns = [
 
     path('agendamento/', lista_agendamento, name='core_lista_agendamento'),
     path('agendamento-novo/', agendamento_novo, name = 'core_agendamento_novo'),
-    re_path(r'agendamento-update/(?P<id>\d+)/$', agendamento_update, name = 'core_agendamento_update'),
-    re_path(r'agendamento-delete/(?P<id>\d+)/$', agendamento_delete, name = 'core_agendamento_delete'), 
+    re_path('agendamento-update/(?P<id>\d+)/$', agendamento_update, name = 'core_agendamento_update'),
+    re_path('agendamento-delete/(?P<id>\d+)/$', agendamento_delete, name = 'core_agendamento_delete'), 
     
 ]
