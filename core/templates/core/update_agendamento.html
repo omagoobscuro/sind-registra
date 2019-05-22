@@ -13,6 +13,7 @@
         <title>ATUALIZAR AGENDAMENTO<</title>
 </head>
 <body>
+        <div class="container">
         <form action="{% url 'core_agendamento_update' agendamento.id %}" method="POST">
 
         {% csrf_token %}       
@@ -22,7 +23,7 @@
         <button type="submit" class="btn btn-success">Atualizar</button>
         <a href="{% url 'core_agendamento_delete' agendamento.id %}" class="btn btn-danger">Deletar</a>
         </form>
-        
+        </div>
 </body>
      </div>
 </div>

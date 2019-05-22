@@ -6,25 +6,29 @@
         <div class="col-md-auto">
          <div class="table-responsive">
                         <table class="table">
-                                        <h2 class="text-center">Lista de Debitos</h2>
+                                        <h2 class="text-center">Lista de Lançamentos</h2>
                                  <thead class="thead-dark">
                                          <tr>
                                             <th scope="col">ID</th>
                                             <th scope="col">Empresa</th>
                                             <th scope="col">Valor</th>
                                             <th scope="col">Vencimento</th>
+                                          <th scope="col">Data_Envio</th>
+                                          <th scope="col">Status</th> 
                                             <th colspan = '2' style="text-align:center" scope="col">Ações</th>
                                           </tr>
                                  </thead>
                                         <tbody>
-                                                {% for debito in Debito %}
+                                                {% for lancamentototal in lancamentostotal %}
                                           <tr>
-                                            <th scope="row">{{debito.id}}</th>
-                                            <td>{{debito.empresa}}</td>
-                                            <td>{{debito.valor}}</td>
-                                            <td>{{debito.vencimento}}</td>
-                                            <td><a href="{% url 'core_debito_update' debito.id %}" class="btn btn-primary">Editar</td>
-                                            <td><a href="{% url 'core_debito_delete' debito.id %}" class="btn btn-danger">Excluir</td>
+                                            <th scope="row">{{lancamentototal.id}}</th>
+                                            <td>{{lancamentototal.empresa}}</td>
+                                            <td>{{lancamentototal.valor}}</td>
+                                            <td>{{lancamentototal.vencimento}}</td>
+                                            <td>{{lancamentototal.data_envio}}</td>
+                                            <td>{{lancamentototal.status}}</td>
+                                            <td><a href="{% url 'core_lancamentototal_update' lancamentototal.id %}" class="btn btn-primary">Editar</td>
+                                            <td><a href="{% url 'core_lancamentototal_delete' lancamentototal.id %}" class="btn btn-danger">Excluir</td>
                                           </tr>       
                                             {% endfor %}                
                                         </tbody>
@@ -32,18 +36,18 @@
                           <div class="container">
                           <div class="row justify-content-md-center">
                 <div class="col-md-auto">
-                        <h2 class="text-center">Adicionar Associado</h2>
+                        <h2 class="text-center">Adicionar Lançamentos</h2>
                 </div>
 </div>
 
-                     <form action="{% url 'core_debito_novo' %}" method="POST">
+                     <form action="{% url 'core_lancamentototal_novo' %}" method="POST">
           
                          {% csrf_token %}       
                                                  
                           {{form|bootstrap }}
                                 
                          <button type="submit" class="btn btn-success">Cadastrar</button>
-                         <a class="btn btn-info" href="{% url 'relatorio_debitos' %}">Relatorio PDF</a>
+                         <a class="btn btn-info" href="{% url 'relatorio_lancamentos' %}">Relatorio PDF</a>
           </form>                  
                                       
         </div>

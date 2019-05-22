@@ -66,12 +66,12 @@
             </tr>
             </thead>
             <tbody>
-            {% for debito in debitos %}
+            {% for debitototal in debitostotal %}
                 <tr>
-                    <td>{{ debito.id }}</td>
-                    <td>{{ debito.empresa }}</td>
-                    <td>{{ debito.valor }}</td>
-                    <td>{{ debito.vencimento }}</td>
+                    <td>{{ debitototal.id }}</td>
+                    <td>{{ debitototal.empresa }}</td>
+                    <td>{{ debitototal.valor }}</td>
+                    <td>{{ debitototal.vencimento }}</td>
                     
                 </tr>
             {% endfor %}

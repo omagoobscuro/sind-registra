@@ -12,6 +12,7 @@
         <title>ATUALIZAR DADOS DA EMPRESA<</title>
 </head>
 <body>
+        <div class="container">
         <form action="{% url 'core_empresa_update' empresa.id %}" method="POST">
 
         {% csrf_token %}       
@@ -21,7 +22,7 @@
         <button type="submit" class="btn btn-success">Atualizar</button>
         <a href="{% url 'core_empresa_delete' empresa.id %}" class="btn btn-danger">Deletar</a>
         </form>
-        
+        </div>
 </body>
         </div>
 </div>

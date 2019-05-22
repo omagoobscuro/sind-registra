@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Empresa, Associado, Agendamento, Lancamento, Debito
+from .models import Empresa, Associado, Agendamento, LancamentoTotal, DebitoTotal, Financeiro
 from django import forms
 from tempus_dominus.widgets import DatePicker, TimePicker, DateTimePicker
 import datetime
@@ -16,16 +16,21 @@ class AssociadoForm(ModelForm):
     model = Associado
     fields = "__all__"
 
-class LancamentoForm(ModelForm):
+class LancamentoTotalForm(ModelForm):
   class Meta:
-    model = Lancamento
-    fields = "__all__"    
-
-class DebitoForm(ModelForm):
-  class Meta:
-    model = Debito
+    model = LancamentoTotal
     fields = "__all__"
 
+
+class DebitoTotalForm(ModelForm):
+  class Meta:
+    model = DebitoTotal
+    fields = "__all__"
+
+class FinanceiroForm(ModelForm):
+  class Meta:
+    model = Financeiro
+    fields = "__all__"
 
 class AgendamentoForm(ModelForm):
   class Meta:

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+<div class="row">
+        <div class="col">
+{% block conteudo %}
+
+<html lang="pt-br">
+<head>
+        <h2>Tem certeza que deseja deletar: {{ lancamentototal }}</h2>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Deletar<</title>
+</head>
+<body>
+        <form method="POST" action="{% url 'core_lancamentototal_delete' lancamentototal.id %}">
+        {% csrf_token %}               
+        <button type="submit" class="btn btn-danger">Deletar</button>
+
+        </form>
+</body>
+        </div>
+</div>
+</html>
+{% endblock conteudo %}

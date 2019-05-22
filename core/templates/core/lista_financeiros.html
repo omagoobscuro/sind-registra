@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block conteudo %}
+
+        <div class="col-md-auto">
+         <div class="table-responsive">
+                        <table class="table">
+                                        <h2 class="text-center">Lista Financeira</h2>
+                                 <thead class="thead-dark">
+                                         <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Empresa_lançamento</th>
+                                            <th scope="col">Lançamento</th>
+                                            <th scope="col">Empresa_debito</th>
+                                          <th scope="col">Debito</th>
+                                            <th scope="col">Consulta</th>
+
+                                            <th colspan = '2' style="text-align:center" scope="col">Ações</th>
+                                          </tr>
+                                 </thead>
+                                        <tbody>
+                                                {% for financeiro in financeiros %}
+                                          <tr>
+                                            <th scope="row">{{financeiro.id}}</th>
+                                            <td>{{financeiro.empresa_lancamento}}</td>
+                                            <td>{{financeiro.lancamento}}</td>
+                                            <td>{{financeiro.empresa_debito}}</td>
+                                            <td>{{financeiro.debito}}</td>
+                                            <td>{{financeiro.consulta}}</td>
+                                            <td><a href="{% url 'core_financeiro_update' financeiro.id %}" class="btn btn-primary">Editar</td>
+                                            <td><a href="{% url 'core_financeiro_delete' financeiro.id %}" class="btn btn-danger">Excluir</td>
+                                          </tr>       
+                                            {% endfor %}                
+                                        </tbody>
+                          </table>
+                          <div class="container">
+                          <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                        <h2 class="text-center">Calcular Finanças</h2>
+                </div>
+</div>
+
+                     <form action="{% url 'core_financeiro_novo' %}" method="POST">
+          
+                         {% csrf_token %}       
+                                                 
+                          {{form|bootstrap }}
+                                
+                         <button type="submit" class="btn btn-success">Cadastrar</button>
+                         <a class="btn btn-info" href="{% url 'relatorio_financeiro' %}">Relatorio PDF</a>
+          </form>                  
+                                      
+        </div>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+       
+</head>
+<body>
+             
+             </div>
+          </body>
+
+          {% endblock conteudo %}
+          </html> 
+          </div>

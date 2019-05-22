@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin.options import ModelAdmin
-from .models import (Empresa, Associado, Agendamento, Lancamento, Debito,
- LancamentoTotal, DebitoTotal, Financeiro
+from .models import (Empresa, Associado, Agendamento,
+LancamentoTotal, DebitoTotal, Financeiro
 )
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -26,28 +26,25 @@ class AgendamentoAdmin(admin.ModelAdmin):
     search_fields = ('nome', 'cpf',)
     list_filter = ( 'nome', 'inicio',  'assunto', )
 
-   
-class LancamentoAdmin(admin.ModelAdmin):
-    list_display = ('empresa','valor','vencimento','data_envio','status', )    
-
+ 
 class LancamentoTotalAdmin(admin.ModelAdmin):
-    list_display = ('valor','empresa' )   
-
-class DebitoAdmin(admin.ModelAdmin):
-    list_display = ('empresa','valor', 'vencimento', )    
+    list_display = ('empresa', 'valor', 'data_envio','status',)
+    search_fields = ('empresa', 'status',)
+    list_filter = ( 'empresa', 'status',  'valor', )
 
 class DebitoTotalAdmin(admin.ModelAdmin):
-    list_display = ('valor','empresa', )       
+    list_display = ('empresa', 'valor', 'vencimento',)
+    search_fields = ('empresa', 'vencimento',)
+    list_filter = ('empresa', 'valor',  'vencimento',)       
 
 class FinanceiroAdmin(admin.ModelAdmin):
-    list_display = ('debito', 'lancamento','consulta', 'total',)
+    list_display = ('empresa_lancamento','empresa_debito','debito', 'lancamento','consulta', 'total',)
     list_filter = ('debito', 'lancamento',)
 
      
 admin.site.register(Empresa , EmpresaAdmin)
 admin.site.register(Associado , AssociadoAdmin)
 admin.site.register(Agendamento, AgendamentoAdmin)
-admin.site.register(Lancamento, LancamentoAdmin)
 admin.site.register(LancamentoTotal, LancamentoTotalAdmin)
 admin.site.register(DebitoTotal, DebitoTotalAdmin)
 admin.site.register(Financeiro, FinanceiroAdmin)

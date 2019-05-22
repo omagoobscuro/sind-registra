@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>RELATORIO LANÇAMENTOS</title>
+    <title>RELATORIO FINANCEIRO</title>
     <style type="text/css">
         @page {
             size: A4;
@@ -52,7 +52,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h3>Relatorio de Lançamentos- SINDREGISTRA {{ today | date:"d/m/Y" }}</h3>
+            <h3>Relatorio de Finanças - SINDREGISTRA {{ today | date:"d/m/Y" }}</h3>
         </div>
 
 
@@ -60,22 +60,23 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Empresa</th>
-                <th>Valor</th>
-                <th>Vencimento</th>
-                <th>Data_Envio</th>
-                <th>Status</th>
+                <th>Empresa_lançamento</th>
+                <th>Lançamento</th>
+                <th>Empresa_debito</th>
+                <th>Debito</th>
+                <th>Consulta</th>
+                <th>TOTAL</th>
             </tr>
             </thead>
             <tbody>
-            {% for lancamentototal in lancamentostotal %}
+            {% for financeiro in financeiros %}
                 <tr>
-                    <td>{{ lancamentototal.id }}</td>
-                    <td>{{ lancamentototal.empresa }}</td>
-                    <td>{{ lancamentototal.valor }}</td>
-                    <td>{{ lancamentototal.vencimento }}</td>
-                    <td>{{ lancamentototal.data_envio }}</td>
-                    <td>{{lancamentototal.status}}</td>
+                    <td>{{ financeiro.id }}</td>
+                    <td>{{ financeiro.empresa_lancamento }}</td>
+                    <td>{{ financeiro.lancamento }}</td>
+                    <td>{{ financeiro.empresa_debito }}</td>
+                    <td>{{ financeiro.debito }}</td>
+                    <td>{{ financeiro.total}}</td>
                 </tr>
             {% endfor %}
             </tbody>

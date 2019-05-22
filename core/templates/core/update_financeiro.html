@@ -5,23 +5,24 @@
                 <div class="col">
 <html lang="pt-br">
 <head>
-        <h2>Atualizar Lançamentos: {{ empresa }}</h2>
+        <h2>Atualizar Finança: {{ financeiro }}</h2>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>ATUALIZAR LANÇAMENTOS<</title>
+        <title>ATUALIZAR DADOS FINANCEIROS<</title>
 </head>
 <body>
-        <form action="{% url 'core_lancamento_update' lancamento.id %}" method="POST">
+        <div class="container">
+        <form action="{% url 'core_financeiro_update' financeiro.id %}" method="POST">
 
         {% csrf_token %}       
                  
         {{ form|bootstrap }}
 
         <button type="submit" class="btn btn-success">Atualizar</button>
-        <a href="{% url 'core_lancamento_delete' lancamento.id %}" class="btn btn-danger">Deletar</a>
+        <a href="{% url 'core_financeiro_delete' financeiro.id %}" class="btn btn-danger">Deletar</a>
         </form>
-        
+        </div>
 </body>
         </div>
 </div>

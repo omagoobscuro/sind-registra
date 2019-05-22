@@ -6,14 +6,14 @@
 
 <html lang="pt-br">
 <head>
-        <h2>Tem certeza que deseja deletar: {{ lancamento }}</h2>
+        <h2>Tem certeza que deseja deletar: {{ financeiro }}</h2>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Deletar<</title>
 </head>
 <body>
-        <form method="POST" action="{% url 'core_lancamento_delete' lancamento.id %}">
+        <form method="POST" action="{% url 'core_financeiro_delete' financeiro.id %}">
         {% csrf_token %}               
         <button type="submit" class="btn btn-danger">Deletar</button>
 

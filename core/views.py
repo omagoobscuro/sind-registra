@@ -5,8 +5,8 @@ import xhtml2pdf.pisa as pisa
 import io
 from django.views.generic.base import View
 from django.http import HttpResponse
-from .models import Empresa, Associado, Agendamento, Lancamento, Debito
-from .forms import EmpresaForm, AssociadoForm, AgendamentoForm, LancamentoForm, DebitoForm
+from .models import Empresa, Associado, Agendamento, LancamentoTotal, DebitoTotal, Financeiro
+from .forms import EmpresaForm, AssociadoForm, AgendamentoForm, LancamentoTotalForm, DebitoTotalForm,FinanceiroForm
 from django.contrib import messages
 
 
@@ -133,6 +133,43 @@ def lancamento_delete(request, id):
      else:
              return render(request, 'core/delete_lancamento.html', {'lancamento': lancamento}) 
  
+@login_required
+def lista_lancamentostotal(request):
+    lancamentostotal = LancamentoTotal.objects.all()
+    form = LancamentoTotalForm(request.POST)
+    return render(request, 'core/lista_lancamentostotal.html', {'lancamentostotal': lancamentostotal, 'form': form})    
+
+def lancamentototal_novo(request):
+    form = LancamentoTotalForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.warning(request,"Lançamento adicionado com sucesso")
+    return redirect('core_lista_lancamentostotal')   
+    
+
+def lancamentototal_update(request, id):
+    data = {}
+    lancamentototal = LancamentoTotal.objects.get(id=id)
+    form = LancamentoTotalForm(request.POST or None, instance=lancamentototal)
+    data['lancamentototal'] = lancamentototal
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.warning(request,"Lançamento editado com sucesso")
+            return redirect('core_lista_lancamentostotal')    
+    else:
+        return render(request, 'core/update_lancamentototal.html', data)
+
+def lancamentototal_delete(request, id):
+     lancamentototal = LancamentoTotal.objects.get(id=id)   
+     if request.method == 'POST':
+             lancamentototal.delete()
+             messages.warning(request,"Lançamento deletado com sucesso")
+             return redirect('core_lista_lancamentostotal')
+     else:
+             return render(request, 'core/delete_lancamentototal.html', {'lancamentototal': lancamentototal}) 
 
 @login_required
 def lista_debitos(request):
@@ -171,6 +208,82 @@ def debito_delete(request, id):
              return redirect('core_lista_debitos')
      else:
              return render(request, 'core/delete_debito.html', {'debito': debito})  
+
+@login_required
+def lista_debitostotal(request):
+    debitostotal = DebitoTotal.objects.all()
+    form = DebitoTotalForm(request.POST)
+    return render(request, 'core/lista_debitostotal.html', {'debitostotal': debitostotal, 'form': form})    
+
+def debitototal_novo(request):
+    form = DebitoTotalForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.warning(request,"Debito adicionado com sucesso")
+    return redirect('core_lista_debitostotal')   
+    
+
+def debitototal_update(request, id):
+    data = {}
+    debitototal = DebitoTotal.objects.get(id=id)
+    form = DebitoTotalForm(request.POST or None, instance=debitototal)
+    data['debitototal'] = debitototal
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.warning(request,"Debito atualizado com sucesso")
+            return redirect('core_lista_debitostotal')    
+    else:
+        return render(request, 'core/update_debitototal.html', data)
+
+def debitototal_delete(request, id):
+     debitototal = DebitoTotal.objects.get(id=id)   
+     if request.method == 'POST':
+             debitototal.delete()
+             messages.warning(request,"Debito deletado com sucesso")
+             return redirect('core_lista_debitostotal')
+     else:
+             return render(request, 'core/delete_debitototal.html', {'debitototal': debitototal})               
+
+@login_required
+def lista_financeiros(request):
+    financeiros = Financeiro.objects.all()
+    form = FinanceiroForm(request.POST)
+    return render(request, 'core/lista_financeiros.html', {'financeiros': financeiros, 'form': form})    
+
+def financeiro_novo(request):
+    form = FinanceiroForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.warning(request,"Financeiro adicionado com sucesso")
+    return redirect('core_lista_financeiros')   
+    
+
+def financeiro_update(request, id):
+    data = {}
+    financeiro = financeiro.objects.get(id=id)
+    form = FinanceiroForm(request.POST or None, instance=financeiro)
+    data['financeiro'] = financeiro
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.warning(request,"Financeiro atualizado com sucesso")
+            return redirect('core_lista_financeiros')    
+    else:
+        return render(request, 'core/update_financeiro.html', data)
+
+def financeiro_delete(request, id):
+     financeiro = Financeiro.objects.get(id=id)   
+     if request.method == 'POST':
+             financeiro.delete()
+             messages.warning(request,"Financeiro deletado com sucesso")
+             return redirect('core_lista_financeiros')
+     else:
+             return render(request, 'core/delete_financeiro.html', {'financeiro': financeiro})  
 
 @login_required
 def lista_agendamento(request):
@@ -246,9 +359,9 @@ class PdfAssociado(View):
 
 class PdfLancamento(View):
     def get(self, request):
-        lancamentos = Lancamento.objects.all()
+        lancamentostotal = LancamentoTotal.objects.all()
         params = {
-            'lancamentos': lancamentos,
+            'lancamentostotal': lancamentostotal,
             'request': request,
         }
         return Render.render('core/relatorio_lancamentos.html', params, 'relatorio_lancamentos')
@@ -256,9 +369,18 @@ class PdfLancamento(View):
 
 class PdfDebitos(View):
     def get(self, request):
-        debitos = Debito.objects.all()
+        debitostotal = DebitoTotal.objects.all()
         params = {
-            'debitos': debitos,
+            'debitostotal': debitostotal,
             'request': request,
         }
         return Render.render('core/relatorio_debitos.html', params, 'relatorio_debitos')
+
+class PdfFinanceiro(View):
+    def get(self, request):
+        financeiros = Financeiro.objects.all()
+        params = {
+            'financeiros': financeiros,
+            'request': request,
+        }
+        return Render.render('core/relatorio_financeiro.html', params, 'relatorio_financeiro')        

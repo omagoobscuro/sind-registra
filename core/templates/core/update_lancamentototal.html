@@ -2,32 +2,29 @@
 {% load bootstrap %}
 {% block conteudo %}
 <div class="row">
-        <div class="col">
-
+                <div class="col">
 <html lang="pt-br">
 <head>
-        <h2>Atualizar Associado: {{ associado }}</h2>
+        <h2>Atualizar Lançamentos: {{ lancamentototal }}</h2>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>ATUALIZAR DADOS DO ASSOCIADO<</title>
+        <title>ATUALIZAR LANÇAMENTOS<</title>
 </head>
 <body>
         <div class="container">
-        <form action="{% url 'core_associado_update' associado.id %}" method="POST">
+        <form action="{% url 'core_lancamentototal_update' lancamentototal.id %}" method="POST">
 
         {% csrf_token %}       
                  
         {{ form|bootstrap }}
 
         <button type="submit" class="btn btn-success">Atualizar</button>
-        <a href="{% url 'core_associado_delete' associado.id %}" class="btn btn-danger">Deletar</a>
+        <a href="{% url 'core_lancamentototal_delete' lancamentototal.id %}" class="btn btn-danger">Deletar</a>
         </form>
         </div>
-        
 </body>
-     </div>
+        </div>
 </div>
 </html>
-   
 {% endblock conteudo %}
