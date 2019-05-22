@@ -1,5 +1,6 @@
 
 import os
+import django_heroku
 from decouple import config
 from dj_database_url import parse as dburl
 
@@ -141,3 +142,5 @@ EMAIL_HOST_USER = 'acelinofernandessilva@hotmail.com'
 EMAIL_HOST_PASSWORD = 'metal666'
 EMAIL_PORT = 25
 EMAIL_USE_TLS = True
+
+django_heroku.settings(locals())
