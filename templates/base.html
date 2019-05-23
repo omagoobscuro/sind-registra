@@ -21,15 +21,14 @@
                 <div
                     class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav mr-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link active text-light" href="/">Home</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link text-light" href="">Home</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-light" href="{% url 'core_lista_associados' %}">Associados</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-light" href="{% url 'core_lista_empresas' %}">Empresas</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link text-light" href="{% url 'core_lista_agendamento' %}">Agendamentos</a></li>
                         <li class="dropdown nav-item"><a class="dropdown-toggle nav-link text-light" data-toggle="dropdown" aria-expanded="false" href="#">Contas </a>
-                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="{% url 'core_lista_lancamentostotal' %}">LançamentosTotal</a><a class="dropdown-item" role="presentation" href="{% url 'core_lista_debitostotal' %}">DebitosTotal</a><a class="dropdown-item" role="presentation" href="{% url 'core_lista_financeiros' %}">Financeiro</a></div>
+                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="{% url 'core_lista_lancamentostotal' %}">LançamentosTotal</a><a class="dropdown-item" role="presentation" href="{% url 'core_lista_debitostotal' %}">DebitoTotal</a><a class="dropdown-item" role="presentation" href="{% url 'core_lista_financeiros' %}">Financeiro</a></div>
                         </li>
-                    </ul>{% if user.is_authenticated %}<span class="navbar-text actions"> <a class="btn btn-dark" role="button" href="{% url 'logout'%}">{{ user }}, Deslogar </a></span>{% endif %}
-                    <button type="button" class="btn btn-primary">Primary</button></div>
+                        </ul>{% if user.is_authenticated %}<span class="navbar-text actions"> <a class="text-danger login" href="{% url 'logout'%}" style="color: #d81e05;">Deslogar</a><a class="btn btn-light action-button" role="button" href="/admin" style="background-color: rgb(61,157,248);">Administração</a></span></div>{% endif %}
     </div>
     </nav>
         {% if messages %}
