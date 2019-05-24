@@ -20,7 +20,10 @@
                                           </tr>
                                  </thead>
                                         <tbody>
+                                     
                                                 {% for agendamento in agendamentos %}
+                                                   {% if form.errors %}
+            {% endif %}
                                           <tr>
                                             <th scope="row">{{agendamento.id}}</th>
                                             <td>{{agendamento.nome}}</td>
@@ -32,7 +35,8 @@
                                             <td><a href="{% url 'core_agendamento_update' agendamento.id %}" class="btn btn-primary">Editar</td>
                                             <td><a href="{% url 'core_agendamento_delete' agendamento.id %}" class="btn btn-danger">Excluir</td>
                                           </tr>       
-                                            {% endfor %}                
+                                            {% endfor %}    
+                                                        
                                         </tbody>
                           </table>
                           <div class="container">

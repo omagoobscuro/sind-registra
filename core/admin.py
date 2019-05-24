@@ -5,17 +5,19 @@ LancamentoTotal, DebitoTotal, Financeiro
 )
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.utils.html import format_html
+
 
 
 
 # Register your models here.
 
+
 class EmpresaAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'telefone', 'cnpj',)
+    list_display = ('nome', 'telefone', 'cnpj','telefone', 'email')
     search_fields = ('nome', 'cnpj',)
     list_filter = ( 'nome', 'cnpj',  'telefone', )
-       
-    
+
 class AssociadoAdmin(admin.ModelAdmin):
     list_display = ('nome', 'endereco', 'telefone', 'cpf', 'data_filiacao', 'data_nascimento' )   
     search_fields = ('nome', 'cpf',)

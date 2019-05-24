@@ -14,7 +14,6 @@ class Empresa(models.Model):
     cnpj = models.CharField(max_length=15, unique=True)
     email = models.CharField(max_length=30)
     
-
     def __str__(self):
         return self.nome
 

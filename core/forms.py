@@ -35,6 +35,4 @@ class FinanceiroForm(ModelForm):
 class AgendamentoForm(ModelForm):
   class Meta:
     model = Agendamento
-    fields = "__all__" 
-
-    
+    fields = "__all__"

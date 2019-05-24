@@ -8,10 +8,26 @@ from django.http import HttpResponse
 from .models import Empresa, Associado, Agendamento, LancamentoTotal, DebitoTotal, Financeiro
 from .forms import EmpresaForm, AssociadoForm, AgendamentoForm, LancamentoTotalForm, DebitoTotalForm,FinanceiroForm
 from django.contrib import messages
-
+from django.contrib.auth import authenticate, login
+from django.conf import settings
 
 
 # Create your views here.
+
+@login_required
+def login_user(request):
+    group = request.user.groups.filter(user=request.user)[0]
+    if group.name=="funcionario":
+        return HttpResponseRedirect(reverse('admin'))
+    elif group.name=="teamLeader":
+        return HttpResponseRedirect(reverse('teamLeader'))
+    elif group.name=="admin":
+        return HttpResponseRedirect(reverse('adm'))
+
+    context = {}
+    template = "index.html"
+    return render(request, template, context)
+        
 @login_required
 def home(request):
     context = {'mensagem': 'sind-registra'}
@@ -64,12 +80,12 @@ def lista_associados(request):
     return render(request, 'core/lista_associados.html', {'associados': associados, 'form': form})    
 
 def associado_novo(request):
-    form = AssociadoForm(request.POST or None)
-    if form.is_valid():
-        form.save()
+        form = AssociadoForm(request.POST or None)
+        if form.is_valid():
+             form.save()
         messages.warning(request,"Associado adicionado com sucesso")
-    return redirect('core_lista_associados')   
-    
+        return redirect('core_lista_associados')   
+
 
 def associado_update(request, id):
     data = {}
@@ -290,13 +306,14 @@ def lista_agendamento(request):
     agendamentos = Agendamento.objects.all()
     form = AgendamentoForm(request.POST)
     return render(request, 'core/lista_agendamento.html', {'agendamentos': agendamentos, 'form': form})    
+  
 
 def agendamento_novo(request):
     form = AgendamentoForm(request.POST or None)
     if form.is_valid():
         form.save()
         messages.warning(request,"Agendamento adicionado com sucesso")
-    return redirect('core_lista_agendamento')
+
    
 def agendamento_update(request, id):
     data = {}
