@@ -14,19 +14,21 @@ from django.conf import settings
 
 # Create your views here.
 
-@login_required
-def login_user(request):
-    group = request.user.groups.filter(user=request.user)[0]
-    if group.name=="funcionario":
-        return HttpResponseRedirect(reverse('admin'))
-    elif group.name=="teamLeader":
-        return HttpResponseRedirect(reverse('teamLeader'))
-    elif group.name=="admin":
-        return HttpResponseRedirect(reverse('adm'))
+class Login:
+        def dispatch(self, request, *args, **kwargs):
+          if request.method == 'POST':
+                username = request.POST.get('username')
+                password = request.POST.get('password')
+                user = authenticate(username=username, password=password)
 
-    context = {}
-    template = "index.html"
-    return render(request, template, context)
+                if user.is_active:    
+                # Redirecting to the required login according to user status.
+                     if user.is_superuser or user.is_staff:
+                        login(request, user)
+                        return HttpResponseRedirect('admin')  # or your url name
+                else:
+                        login(request, user)
+                        return redirect('')
         
 @login_required
 def home(request):
