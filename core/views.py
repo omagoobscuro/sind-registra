@@ -1,9 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.template.loader import get_template
 import xhtml2pdf.pisa as pisa
 import io
 from django.views.generic.base import View
+from django.views.generic import TemplateView
 from django.http import HttpResponse
 from .models import Empresa, Associado, Agendamento, LancamentoTotal, DebitoTotal, Financeiro
 from .forms import EmpresaForm, AssociadoForm, AgendamentoForm, LancamentoTotalForm, DebitoTotalForm,FinanceiroForm
@@ -12,23 +14,26 @@ from django.contrib.auth import authenticate, login
 from django.conf import settings
 
 
-# Create your views here.
 
-class Login:
-        def dispatch(self, request, *args, **kwargs):
-          if request.method == 'POST':
-                username = request.POST.get('username')
-                password = request.POST.get('password')
-                user = authenticate(username=username, password=password)
+class Home(LoginRequiredMixin, TemplateView):
+    template_name = "core/index.html"
 
-                if user.is_active:    
-                # Redirecting to the required login according to user status.
-                     if user.is_superuser or user.is_staff:
-                        login(request, user)
-                        return HttpResponseRedirect('admin')  # or your url name
-                else:
-                        login(request, user)
-                        return redirect('')
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_superuser or request.user.is_staff:
+            return redirect('/admin/')
+        else:
+            return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['mensagem'] = 'sind-registra'
+        return context
+
+
+# @login_required
+# def home(request):
+#     context = {'mensagem': 'sind-registra'}
+#     return render(request, 'core/index.html', context)
         
 @login_required
 def home(request):

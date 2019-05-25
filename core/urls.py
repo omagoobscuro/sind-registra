@@ -1,6 +1,6 @@
 from django.urls import include, path,re_path
 
-from .views import (home,
+from .views import (Home,
 lista_empresas,
 lista_associados,
 lista_lancamentostotal,
@@ -59,7 +59,7 @@ urlpatterns = [
     re_path('financeiro-update/(?P<id>\d+)/$', financeiro_update, name = 'core_financeiro_update'),
     re_path('financeiro-delete/(?P<id>\d+)/$', financeiro_delete, name = 'core_financeiro_delete'),         
 
-    path(r'', home, name = 'home'),
+    path(r'', Home.as_view(), name = 'home'),
     re_path(r'relatorio/$', PdfEmpresa.as_view(), name='relatorio_pdf'),
     path(r'relatorio_associados', PdfAssociado.as_view(), name='relatorio_associados'),
     path(r'relatorio_lancamentos', PdfLancamento.as_view(), name='relatorio_lancamentos'),
