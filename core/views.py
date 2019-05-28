@@ -36,11 +36,14 @@ class Home(LoginRequiredMixin, TemplateView):
 # def home(request):
 #     context = {'mensagem': 'sind-registra'}
 #     return render(request, 'core/index.html', context)
+<<<<<<< HEAD
         
 @login_required
 def home(request):
     context = {'mensagem': 'sind-registra'}
     return render(request, 'core/index.html', context)
+=======
+>>>>>>> d2896da99b7da81f0fec041013acc85f91b60fc8
 
 @login_required
 def lista_empresas(request):
