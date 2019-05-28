@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block conteudo %}
+
+        <div class="col-md-auto">
+         <div class="table-responsive">
+                        <table class="table">
+                                        <h2 class="text-center">Lista dos Informações juridicas</h2>
+                                 <thead class="thead-dark">
+                                         <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Processo</th>
+                                            <th scope="col">Reclamante</th>
+                                            <th scope="col">Cpf</th>
+                                            <th scope="col">Motivo</th>
+                                            <th scope="col">Reclamado</th>
+                                            <th scope="col">Cnpj</th>
+                                            <th scope="col">Advogado</th>
+                                            <th scope="col">Data Entrada</th>
+                                            <th scope="col">Data Audiencia</th>
+                                            <th scope="col">Local Audiencia</th>
+                                            <th scope="col">Status</th>
+                                            <th colspan = '2' style="text-align:center" scope="col">Ações</th>
+                                          </tr>
+                                 </thead>
+                                        <tbody>
+                                                {% for juridico in juridicos %}
+                                          <tr>
+                                            <th scope="row">{{juridico.id}}</th>
+                                            <td>{{juridico.processo}}</td>
+                                            <td>{{juridico.reclamante}}</td>
+                                            <td>{{juridico.cpf_reclamante}}</td>
+                                            <td>{{juridico.motivo}}</td>
+                                            <td>{{juridico.reclamado}}</td>
+                                            <td>{{juridico.cnpj_reclamado}}</td>
+                                            <td>{{juridico.advogado}}</td>
+                                            <td>{{juridico.data_entrada}}</td>
+                                            <td>{{juridico.data_audiencia}}</td>
+                                            <td>{{juridico.local_audiencia}}</td>
+                                            <td>{{juridico.status}}</td>
+                                            <td><a href="{% url 'core_juridico_update' juridico.id %}" class="btn btn-primary">Editar</td>
+                                            <td><a href="{% url 'core_juridico_delete' juridico.id %}" class="btn btn-danger">Excluir</td>
+                                          </tr>       
+                                            {% endfor %}                
+                                        </tbody>
+                          </table>
+                          <div class="container">
+                          <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                        <h2 class="text-center">Adicionar informação juridica</h2>
+                </div>
+</div>
+
+                     <form action="{% url 'core_juridico_novo' %}" method="POST">
+          
+                         {% csrf_token %}       
+                                                 
+                          {{form|bootstrap }}
+                                
+                         <button type="submit" class="btn btn-success">Cadastrar</button>
+                        
+          </form>                  
+                                      
+        </div>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+       
+</head>
+<body>
+             
+             </div>
+          </body>
+
+          {% endblock conteudo %}
+          </html> 
+          </div>

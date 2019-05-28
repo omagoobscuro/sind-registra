@@ -1,21 +1,25 @@
 from django.urls import include, path,re_path
 
 from .views import (Home,
+lista_juridico,
 lista_empresas,
 lista_associados,
 lista_lancamentostotal,
 lista_debitostotal,
 lista_financeiros,
+juridico_novo,
 empresa_novo,
 associado_novo,
 lancamentototal_novo,
 debitototal_novo,
 financeiro_novo,
+juridico_update,
 associado_update,
 lancamentototal_update,
 empresa_update,
 debitototal_update,
 financeiro_update,
+juridico_delete,
 associado_delete,
 lancamentototal_delete,
 empresa_delete,
@@ -70,5 +74,10 @@ urlpatterns = [
     path('agendamento-novo/', agendamento_novo, name = 'core_agendamento_novo'),
     re_path('agendamento-update/(?P<id>\d+)/$', agendamento_update, name = 'core_agendamento_update'),
     re_path('agendamento-delete/(?P<id>\d+)/$', agendamento_delete, name = 'core_agendamento_delete'), 
+
+    path('juridico/',lista_juridico, name = 'core_lista_juridico'),
+    path('juridico-novo/', juridico_novo, name = 'core_juridico_novo'),
+    re_path('juridico-update/(?P<id>\d+)/$', juridico_update, name = 'core_juridico_update'),
+    re_path('juridico-delete/(?P<id>\d+)/$', juridico_delete, name = 'core_juridico_delete'),    
     
 ]

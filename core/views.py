@@ -7,8 +7,10 @@ import io
 from django.views.generic.base import View
 from django.views.generic import TemplateView
 from django.http import HttpResponse
-from .models import Empresa, Associado, Agendamento, LancamentoTotal, DebitoTotal, Financeiro
-from .forms import EmpresaForm, AssociadoForm, AgendamentoForm, LancamentoTotalForm, DebitoTotalForm,FinanceiroForm
+from .models import (Empresa, Associado, Agendamento, LancamentoTotal, DebitoTotal,
+ Financeiro, Juridico)
+from .forms import (EmpresaForm, AssociadoForm, AgendamentoForm, LancamentoTotalForm, 
+DebitoTotalForm,FinanceiroForm, JuridicoForm)
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.conf import settings
@@ -344,7 +346,47 @@ def agendamento_delete(request, id):
              messages.warning(request,"Agendamento deletado com sucesso")
              return redirect('core_lista_agendamento')
      else:
-             return render(request, 'core/delete_agendamento.html', {'agendamento': agendamento})            
+             return render(request, 'core/delete_agendamento.html', {'agendamento': agendamento})     
+
+@login_required
+def lista_juridico(request):
+    juridicos = Juridico.objects.all()
+    form = JuridicoForm()
+    return render(request, 'core/lista_juridico.html', {'juridicos': juridicos, 'form': form})
+
+def juridico_novo(request):
+    form = JuridicoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request,"Informação Juridica adicionada com sucesso")
+        return redirect('core_lista_juridico')
+    else:
+            form = JuridicoForm()
+    return render    
+    
+def juridico_update(request, id):
+    data = {}
+    juridico = Juridico.objects.get(id=id)
+    form = JuridicoForm(request.POST or None, instance=juridico)
+    data['juridico'] = juridico
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.info(request,"Informação juridica editada com sucesso")
+            return redirect('core_lista_juridico')    
+    else:
+        return render(request, 'core/update_juridico.html', data)  
+
+def juridico_delete(request, id):
+     juridico = Juridico.objects.get(id=id)   
+     if request.method == 'POST':
+             juridico.delete()
+             messages.warning(request,"Informação Juridica deletada com sucesso")
+             return redirect('core_lista_juridico')
+     else:
+             return render(request, 'core/delete_juridico.html', {'juridico': juridico})                   
 
 class Render:
     @staticmethod

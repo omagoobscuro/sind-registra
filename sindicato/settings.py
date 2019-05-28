@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     'import_export',
     'tempus_dominus',
     'core',
-    'juridico',
     'bootstrapform',
     'bootstrap_admin',
     'django_extensions',
