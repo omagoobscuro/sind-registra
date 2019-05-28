@@ -1,10 +1,7 @@
 from django.urls import include, path,re_path
 
 from .views import (Home,
-<<<<<<< HEAD
 lista_juridico,
-=======
->>>>>>> d2896da99b7da81f0fec041013acc85f91b60fc8
 lista_empresas,
 lista_associados,
 lista_lancamentostotal,
