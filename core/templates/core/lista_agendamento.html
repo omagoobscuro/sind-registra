@@ -47,7 +47,9 @@
 </div>
 
                      <form action="{% url 'core_agendamento_novo' %}" method="POST">
+                     {{ AgendamentoForm.inicio }}
           
+{{ form.non_field_errors }}
                          {% csrf_token %}       
                                                  
                           {{form|bootstrap }}

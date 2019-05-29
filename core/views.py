@@ -17,6 +17,7 @@ from django.conf import settings
 
 
 
+
 class Home(LoginRequiredMixin, TemplateView):
     template_name = "core/index.html"
 
@@ -322,8 +323,10 @@ def agendamento_novo(request):
     if form.is_valid():
         form.save()
         messages.warning(request,"Agendamento adicionado com sucesso")
+    return redirect('core_lista_agendamento')  
+        
+       
 
-   
 def agendamento_update(request, id):
     data = {}
     agendamento = Agendamento.objects.get(id=id)
