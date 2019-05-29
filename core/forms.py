@@ -37,19 +37,6 @@ class AgendamentoForm(ModelForm):
     model = Agendamento
     fields = "__all__"
 
-  
-f = AgendamentoForm() # Note, this is an unbound form
-f.is_valid()
-False
-f.errors # No errors
-{}
-f = AgendamentoForm({}) # Now, the form is bound (to an empty dictionary)
-f.is_valid()
-False
-f.errors # dictionary of errors
-{'inicio': [u'This field is required.'], 'email': [u'This field is required.']}
-
- 
 
 class JuridicoForm(ModelForm):
   class Meta:
