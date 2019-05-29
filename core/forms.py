@@ -33,10 +33,9 @@ class FinanceiroForm(ModelForm):
     fields = "__all__"
 
 class AgendamentoForm(ModelForm):
-  inicio = forms.TimeField()
   class Meta:
     model = Agendamento
-    fields = ['inicio']
+    fields = "__all__"
 
   
 f = AgendamentoForm() # Note, this is an unbound form
