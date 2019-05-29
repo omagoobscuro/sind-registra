@@ -453,3 +453,12 @@ class PdfFinanceiro(View):
             'request': request,
         }
         return Render.render('core/relatorio_financeiro.html', params, 'relatorio_financeiro')        
+
+class PdfJuridico(View):
+    def get(self, request):
+        juridicos = Juridico.objects.all()
+        params = {
+            'juridicos': juridicos,
+            'request': request,
+        }
+        return Render.render('core/relatorio_juridico.html', params, 'relatorio_juridico')          

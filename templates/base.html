@@ -1,65 +1,26 @@
 {% load staticfiles %}
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>SIND-REGISTRA</title>
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
-    <link rel="stylesheet" href="{% static 'font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Navigation-with-Button.css' %}">
+    <title>sindicato</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+    <link rel="stylesheet" href="{% static 'assets/css/Navigation-with-Button.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/sticky-dark-top-nav-with-dropdown.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
 </head>
-
-<body id="page-top">
-    <div>
-        <nav class="navbar navbar-light navbar-expand-md bg-dark navigation-clean-button">
-            <div class="container"><a class="navbar-brand text-light" href="/">SIND-REGISTRA</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                <div
-                    class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav mr-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link text-light" href="">Home</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-light" href="{% url 'core_lista_associados' %}">Associados</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-light" href="{% url 'core_lista_empresas' %}">Empresas</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-light" href="{% url 'core_lista_agendamento' %}">Agendamentos</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link text-light" href="{% url 'core_lista_juridico' %}">Juridico</a></li>
-                        <li class="dropdown nav-item"><a class="dropdown-toggle nav-link text-light" data-toggle="dropdown" aria-expanded="false" href="#">Contas </a>
-                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="{% url 'core_lista_lancamentostotal' %}">LançamentosTotal</a><a class="dropdown-item" role="presentation" href="{% url 'core_lista_debitostotal' %}">DebitoTotal</a><a class="dropdown-item" role="presentation" href="{% url 'core_lista_financeiros' %}">Financeiro</a></div>
-                        </li>
-                        </ul>{% if user.is_authenticated %}<span class="navbar-text actions"> <a class="text-danger login"  style="color: #7CFE8D;">Olá {{ user}}</a><a class="btn btn-light action-button" role="button" href="{% url 'logout'%}" style="background-color: rgb(61,157,248);">Deslogar-se</a></span></div>{% endif %}
-    </div>
-    </nav>
-        {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    
-
-    </div>
-    {% block conteudo %}
-    <header class="masthead bg-primary text-white text-center" style="background-color: rgb(163,252,18);">
-        <div class="container"><img src="{% static 'img/portfolio/profile.png' %}">
-            <h1>SIND - REGISTRA</h1>
-            <h2 class="font-weight-light mb-0" style="font-size: 40;">Sistema Para Registros em Sindicatos</h2>
-        </div>
-    </header>
-    {% endblock conteudo %}
-    <div class="copyright py-4 text-center text-white">
-    
-        <div class="container"><small>Copyright © SIND-REGISTRA 2018</small></div>
-    </div>
-   
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <script src="{% static 'js/freelancer.js' %}"></script>
-    
+{% block conteudo %}
+<body>
+    <div></div>
+    <p class="text-center text-info" style="font-size: 51px;">SIND-REGISTRA&nbsp;</p>
+    <p class="text-center" style="font-size: 29px;">SISTEMA PARA REGISTROS EM SINDICATOS</p>
+    <footer></footer>
+    <div></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
-
+{% endblock conteudo %}
 </html>

@@ -24,12 +24,14 @@ ALLOWED_HOSTS = ['localhost', '.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [   
+     'django_adminlte_theme',
+    'django_adminlte',
     'django_object_actions',
     'import_export',
     'tempus_dominus',
     'core',
     'bootstrapform',
-    'bootstrap_admin',
+    #'bootstrap_admin',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -133,9 +135,9 @@ MEDIA_ROOT = 'media_files'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),   
 ]
-LOGIN_URL = 'login'
+LOGIN_URL = '/admin'
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = '/admin'
 
 
 EMAIL_HOST = 'smtp-mail.outlook.com'
