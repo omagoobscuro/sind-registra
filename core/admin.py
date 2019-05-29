@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin.options import ModelAdmin
 from .models import (Empresa, Associado, Agendamento,
-LancamentoTotal, DebitoTotal, Financeiro
+LancamentoTotal, DebitoTotal, Financeiro,Juridico
 )
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -28,7 +28,6 @@ class AgendamentoAdmin(admin.ModelAdmin):
     search_fields = ('nome', 'cpf',)
     list_filter = ( 'nome', 'inicio',  'assunto', )
 
- 
 class LancamentoTotalAdmin(admin.ModelAdmin):
     list_display = ('empresa', 'valor', 'data_envio','status',)
     search_fields = ('empresa', 'status',)
@@ -43,6 +42,11 @@ class FinanceiroAdmin(admin.ModelAdmin):
     list_display = ('empresa_lancamento','empresa_debito','debito', 'lancamento','consulta', 'total',)
     list_filter = ('debito', 'lancamento',)
 
+class JuridicoAdmin(admin.ModelAdmin):
+    list_display = ('processo', 'motivo', 'reclamante','reclamado','status','advogado')
+    search_fields = ('processo', 'reclamante','reclamado')
+    list_filter = ( 'processo', 'reclamante',  'reclamado', )
+
      
 admin.site.register(Empresa , EmpresaAdmin)
 admin.site.register(Associado , AssociadoAdmin)
@@ -50,6 +54,7 @@ admin.site.register(Agendamento, AgendamentoAdmin)
 admin.site.register(LancamentoTotal, LancamentoTotalAdmin)
 admin.site.register(DebitoTotal, DebitoTotalAdmin)
 admin.site.register(Financeiro, FinanceiroAdmin)
+admin.site.register(Juridico, JuridicoAdmin)
 
 
 admin.site.site_header = 'Administração'
