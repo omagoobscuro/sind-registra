@@ -8,9 +8,7 @@
 
 {% endif %}
             <h1 class="display-4">Digite seus dados!</h1>
-            <a>user: admin - senha: 123456789/</a>
-            <a>user:atendente - senha: sindicato123/</a>
-            <a>user:juridico - senha:advogados123</a>
+          
       <form method="post" action="{% url 'login' %}">
           {% csrf_token %}
           {# A more "HTML" way of creating the login form#}
