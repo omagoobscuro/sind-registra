@@ -2,5 +2,6 @@
 
 Sistema para controle de sindicatos, utilizando Python e Django
 
-#### EM DESENVOLVIMENTO####
+
+#### DESENVOLVIMENTO COMO PROJETO DE TCC.####
 
